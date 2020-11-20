@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Listes des articles
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="medium" size="small" fill="solid" (click)="openCart()">
+        <ion-icon name="cart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeLg="4" sizeMd="4" sizeXs="12" *ngFor="let article of items">
+
+        <ion-card class="card">
+          <ion-card-header>
+            <ion-card-subtitle>{{article.price | currency:'EUR'}}
+              <ion-button color="medium" size="small" fill="solid" (click)=" addToCart(article)">
+                <ion-icon name="add-outline"></ion-icon>
+              </ion-button>
+            </ion-card-subtitle>
+            <ion-card-title mode="md">{{article.title}}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            {{(article.description.length > 250) ? (article.description | slice:0:250) + '...': article.description}}
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
